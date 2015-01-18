@@ -1,0 +1,60 @@
+//Problem        : Base Arithmetic
+//Language       : Java
+//Compiled Using : javac
+//Version        : Java 1.7.0_65
+//Input for your program will be provided from STDIN
+//Print out all output from your program to STDOUT
+
+import java.util.Scanner;
+//Your submission should *ONLY* use the following class name
+public class Problem
+{
+    public static void main(String[] args)
+    {
+        int sum=0;
+       Scanner stdin = new Scanner(System.in);
+       while(stdin.hasNextLine()) 
+       {
+           //System.out.println(stdin.nextLine());
+           String x=stdin.nextLine();
+      
+           Problem obj=new Problem();
+	        sum+=obj.ReturnDecimal(x,obj.FindBase(x));
+       }
+       System.out.println(sum);
+       stdin.close();
+    }
+	int FindBase(String var){
+		char max='0';
+		for(int i=0;i<var.length();i++){
+			max=(char) Math.max(max, var.charAt(i));
+		}
+		int temp=max;
+		if(temp<58){
+			return temp-47;
+		}
+		else{
+			return temp-54;
+		}
+
+	}
+	int ReturnDecimal(String var,int base){
+		int decimal=0,j=0;
+		for(int i=var.length()-1;i>=0;i--){
+			int temp=ReturnDecValue(var.charAt(i));
+			decimal+=(temp*(Math.pow(base,j)));
+			j++;
+		}
+		return decimal;
+	}
+	int ReturnDecValue(char x){
+		int temp=x;
+		if(temp<58){
+			return temp-48;
+		}
+		else{
+			return temp-55;
+		}
+
+	}
+}
